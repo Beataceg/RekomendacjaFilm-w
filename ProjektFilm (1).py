@@ -4,22 +4,22 @@ import pandas as pd
 
 print("Wczytywanie danych...")
 
-# Wczytywanie danych z plików TSV
+V
 basics = pd.read_csv('title.basics.tsv', sep='\t', na_values='\\N')
 print("Wczytano title.basics.tsv")
 
 ratings = pd.read_csv('title.ratings.tsv', sep='\t', na_values='\\N')
 print("Wczytano title.ratings.tsv")
 
-# Łączenie danych na podstawie ID filmu
+
 data = pd.merge(basics, ratings, on='tconst')
 print("Połączono dane")
 
-# Filtrowanie tylko filmów
+
 data = data[data['titleType'] == 'movie']
 print("Przefiltrowano tylko filmy")
 
-# Czyszczenie danych
+
 data = data.dropna(subset=['primaryTitle', 'genres', 'averageRating', 'startYear'])
 print("Dane wyczyszczone")
 
@@ -46,10 +46,10 @@ genre_mapping = {
     'Western': 'Western'
 }
 
-# Odwrócone mapowanie dla wyszukiwania
+
 inverse_genre_mapping = {v: k for k, v in genre_mapping.items()}
 
-# Wyciąganie unikalnych gatunków w języku polskim
+
 all_genres = sorted(genre_mapping.values())
 
 # Wyciąganie unikalnych lat produkcji filmów
@@ -57,7 +57,7 @@ data['startYear'] = data['startYear'].astype(int)  # Konwersja na int, aby usun�
 all_years = sorted(data['startYear'].unique(), reverse=True)
 
 # Inicjalizacja okna głównego
-# Inicjalizacja okna głównego
+
 root = tk.Tk()
 root.title("Rekomendacje Filmów i Seriali")
 
@@ -69,7 +69,7 @@ screen_height = root.winfo_screenheight()
 window_width = int(screen_width * 0.5)
 window_height = int(screen_height * 0.5)
 
-# Ustaw wymiary okna
+
 root.geometry(f"{window_width}x{window_height}")
 
 # Opcjonalnie: wyśrodkuj okno na ekranie
@@ -197,7 +197,7 @@ random_count_entry.grid(column=1, row=9, padx=10, pady=10, sticky=(tk.W, tk.E))
 clear_button = ttk.Button(mainframe, text="Wyczyść", command=clear_results)
 clear_button.grid(column=0, row=5, columnspan=2, pady=10)
 
-# Pole na wyniki
+
 result_frame = ttk.Frame(mainframe, borderwidth=2, relief="sunken")
 result_frame.grid(column=0, row=6, columnspan=2, pady=10, sticky=(tk.W, tk.E, tk.N, tk.S))
 
@@ -210,11 +210,11 @@ scrollbar.pack(side="right", fill="y")
 
 result_text.config(yscrollcommand=scrollbar.set)
 
-# Etykieta z liczbą wyników
+
 result_count_label = ttk.Label(mainframe, text="", font=("Helvetica", 12))
 result_count_label.grid(column=0, row=7, columnspan=2, pady=5)
 
-# Uruchomienie aplikacji
+
 print("Uruchamianie aplikacji...")
 root.mainloop()
 print("Aplikacja uruchomiona")
