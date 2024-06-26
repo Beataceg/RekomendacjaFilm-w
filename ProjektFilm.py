@@ -4,7 +4,7 @@ import pandas as pd
 
 print("Wczytywanie danych...")
 
-V
+
 basics = pd.read_csv('title.basics.tsv', sep='\t', na_values='\\N')
 print("Wczytano title.basics.tsv")
 
